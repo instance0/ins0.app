@@ -8,6 +8,15 @@
 
     function onSuccess(googleUser) {
       console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      var profile = googleUser.getBasicProfile();
+      var email = profile.getEmail();
+      var name = profile.getName();
+      var fmt = function(n) { return n < 10 ? '0' + n : '' + n };
+      var now = new Date();
+      var h = now.getHours();
+      var m = now.getMinutes();
+      var url = 'https://docs.google.com/forms/d/e/1FAIpQLSeLVqleCSwcDb9_1Bj3ZbnAd88xyrUmW-YKbPempcDMs2rZNg/viewform?usp=pp_url&entry.820477600=' + encodeURIComponent(name) + '&emailAddress=' + encodeURIComponent(email) + 'entry.428681984=' + fmt(h) + ':' + fmt(m);
+      document.location.href = url;
     }
     function onFailure(error) {
       console.log(error);
